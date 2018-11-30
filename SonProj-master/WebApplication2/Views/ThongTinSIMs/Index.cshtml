@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebApplication2.Models.ThongTinSIM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>DANH SÁCH SIM</h2>
+<p>
+    <i>Bấm vào Details để hiện thị thông tin cước phí</i>
+</p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Tìm theo tên hoặc số điện thoại: @Html.TextBox("SearchString")
+        <input type="submit" value="Tìm" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KhachHang.TenKH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoDienThoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayDangKy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayHetHan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flag)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoDienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDangKy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayHetHan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flag)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IDSIM }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IDSIM }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDSIM })
+            </td>
+        </tr>
+    }
+
+</table>

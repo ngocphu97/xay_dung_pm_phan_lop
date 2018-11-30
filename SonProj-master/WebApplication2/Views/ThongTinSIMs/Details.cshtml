@@ -1,0 +1,126 @@
+﻿@model WebApplication2.Models.ThongTinSIM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h2>@Html.DisplayFor(model => model.KhachHang.TenKH) - @Html.DisplayFor(model => model.SoDienThoai) </h2>
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IDSIM }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2> KHÁCH HÀNG ĐĂNG KÍ</h2>
+
+        <ul class="list-group">
+            <li class="list-group-item row">
+                <span class="col-md-4"> <strong>TÊN KHÁCH HÀNG</strong> </span>
+                <span class="col-md-8">@Html.DisplayFor(model => model.KhachHang.TenKH)</span>
+            </li>
+            <li class="list-group-item row">
+                <span class="col-md-4"> <strong>SỐ ĐIỆN THOẠI</strong> </span>
+                <span class="col-md-8">@Html.DisplayFor(model => model.SoDienThoai)</span>
+            </li>
+            <li class="list-group-item row">
+                <span class="col-md-4"> <strong>NGÀY ĐĂNG KÍ</strong> </span>
+                <span class="col-md-8">@Html.DisplayFor(model => model.NgayDangKy)</span>
+            </li>
+            <li class="list-group-item row">
+                <span class="col-md-4"> <strong>NGÀY HẾT HẠN</strong> </span>
+                <span class="col-md-8">@Html.DisplayFor(model => model.NgayHetHan)</span>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="col-md-6">
+        <h2> THÔNG TIN KHÁCH HÀNG </h2>
+
+        <ul class="list-group">
+            <li class="list-group-item row">
+                <span class="col-md-4"> <strong>TÊN KHÁCH HÀNG</strong> </span>
+                <span class="col-md-8">@Html.DisplayFor(model => model.KhachHang.TenKH)</span>
+            </li>
+            <li class="list-group-item row">
+                <span class="col-md-4"> <strong>CMND</strong> </span>
+                <span class="col-md-8">@Html.DisplayFor(model => model.KhachHang.CMND)</span>
+            </li>
+            <li class="list-group-item row">
+                <span class="col-md-4"> <strong>ĐỊA CHỈ</strong> </span>
+                <span class="col-md-8">@Html.DisplayFor(model => model.KhachHang.DiaChi)</span>
+            </li>
+            <li class="list-group-item row">
+                <span class="col-md-4"> <strong>CHỨC VỤ</strong> </span>
+                <span class="col-md-8">@Html.DisplayFor(model => model.KhachHang.ChucVu)</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div>
+    <h2> CHI TIẾT SỬ DỤNG </h2>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Thời gian bắt đầu</th>
+                <th scope="col">Thời gian kết thúc</th>
+                <th scope="col">Số phút từ 23h - 7h</th>
+                <th scope="col">Số phút từ 7h - 23h</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            
+
+            @{int i = 1;}
+            @foreach (var item in Model.ChiTietSuDungs)
+            {
+                i++;
+                <tr>
+                    <th scope="row">@i</th>
+                    <td> @Html.DisplayFor(model => item.TGBD) </td>
+                    <td> @Html.DisplayFor(model => item.TGKT) </td>
+                    <td> @Html.DisplayFor(model => item.SoPhutSD23h7h) </td>
+                    <td> @Html.DisplayFor(model => item.SoPhutSD7h23h) </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>TỔNG KẾT</h3>
+    <div class="list-group">
+        <div class="row list-group-item list-group-item-action list-group-item-success">
+            <span class="col-md-3">
+                Tổng số phút từ 23h - 7h: 
+            </span>
+            <span class="col-md-9">
+                @ViewBag.sophut1 phút
+            </span>
+        </div>
+        <div class="row list-group-item list-group-item-action list-group-item-info">
+            <span class="col-md-3">
+                Tổng số phút từ 7h - 23h: 
+            </span>
+            <span class="col-md-9">
+                @ViewBag.sophut2 phút
+            </span>
+        </div>
+        <div class="row list-group-item list-group-item-action list-group-item-warning">
+            <span class="col-md-3">
+                Tổng tiền: 
+            </span>
+            <span class="col-md-9">
+                @ViewBag.totalPrice VNĐ
+            </span>
+        </div>
+    </div>
+
+</div>
